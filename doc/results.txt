@@ -1,0 +1,11 @@
+Source Nemesis = 130160
+Optimized Nemesis = 119491
+
+Optimized Nemesis is 8.1968346650277% faster than source.
+Simplified percentage: 8.2%
+
+Source Enigma = 87754
+Optimized Enigma = 85608
+
+Optimized Enigma is 2.4454725710509% faster than source.
+Simplified percentage: 2.4%

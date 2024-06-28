@@ -1,0 +1,4 @@
+; Credits:
+; vladikcomper - MD Debugger, original Nemesis optimizations from Nov 4, 2013
+; MarkeyJester - Bitmap MD program
+; Filter - Further Optimized Decompressors
