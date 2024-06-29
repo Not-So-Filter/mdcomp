@@ -120,18 +120,19 @@ SG_NoTMSS:
 		move.w	d1,(z80_reset).l			; request Z80 reset off
 
 		KDebug.WriteLine "Starting to measure performance of decompression..."
-		locVRAM	0
 		lea	Art_Compressed(pc),a0
+		lea	(v_ngfx_buffer).w,a1
+		moveq	#0,d0
 		KDebug.StartTimer
-		bsr.s	NemDec
+		bsr.s	EniDec
 		KDebug.EndTimer 	; this will print number of cycles measured
 		
 LoopGame:
 		bra.s	LoopGame
 
-		include	"../src/optimized/Nemesis.asm"
+		include	"../src/optimized/Enigma.asm"
 		
-Art_Compressed:	binclude	"../art/art.nem"
+Art_Compressed:	binclude	"../art/art.eni"
 		even
 ; ==============================================================
 ; --------------------------------------------------------------

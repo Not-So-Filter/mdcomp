@@ -29,9 +29,7 @@ EniDec:
 		adda.w	a3,a2		; store incremental copy word
 		movea.w	(a0)+,a4
 		adda.w	a3,a4		; store literal copy word
-		move.b	(a0)+,-(sp)	; get first byte of compressed data
-		move.w	(sp)+,d5
-		move.b	(a0)+,d5	; get first word in format list
+		move.w	(a0)+,d5	; get first word in format list
 		moveq	#16,d6		; initial shift value
 ; loc_173E:
 Eni_Loop:
@@ -122,18 +120,14 @@ EniDec_Index:
 ; ===========================================================================
 ; loc_17C4:
 EniDec_Done:
-		subq.w	#1,a0		; go back by one byte
 		cmpi.b	#16,d6		; were we going to start on a completely new byte?
 		bne.s	.notnewbyte	; if not, branch
 		subq.w	#1,a0		; and another one if needed
 ; loc_17CE:
 .notnewbyte:
-		move.w	a0,d0
-		lsr.w	#1,d0		; are we on an odd byte?
-		bcc.s	.evenbyte	; if not, branch
-		addq.w	#1,a0		; ensure we're on an even byte
-; loc_17D6:
-.evenbyte:
+		move.l	a0,d0
+		andi.w	#$FFFE,d0
+		movea.l	d0,a0
 		rts
 
 ; ---------------------------------------------------------------------------
